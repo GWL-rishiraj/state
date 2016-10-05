@@ -16,15 +16,17 @@ Including another URLconf
 """
 from django.conf.urls import patterns,include,url
 from django.contrib import admin
-from news import urls as news_urls
+from news import urls as news_urls, views as newsView
 
 urlpatterns = [
+    #url(r'^$', 'news.views.home', name="home"), we can also use this function instead of below one
+    url(r'^$', newsView.home, name="home"),
     url(r'^admin/', admin.site.urls),
     url(r'^news/', include(news_urls)),
 ]
 
-urlpatterns += patterns('news.views',
-    url(r'^$', 'home', name="home"),
+urlpatterns += patterns('',
+   
 )
 
 
