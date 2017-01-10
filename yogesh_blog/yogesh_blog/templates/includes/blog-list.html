@@ -1,0 +1,66 @@
+<div class="boxed  push-down-45">
+
+            <!-- Meta without image start (Needed for WP theme)-->
+            <div class="meta">
+              <div class="row">
+                <div class="col-xs-12  col-sm-10  col-sm-offset-1">
+                  <div class="meta__container--without-image">
+                    <div class="row">
+                      <div class="col-xs-12  col-sm-8">
+                        <div class="meta__info">
+                          <span class="meta__author">
+                            {% if entry.created_by.teammember.photo %}
+                              <img src="{{ entry.created_by.teammember.photo.url }}"  alt="{{ entry.created_by }}" width="30" height="30">
+                            {% else %}
+                                <img src="{{ STATIC_URL }}images/dummy/about-5.jpg" alt="Meta avatar" width="30" height="30">
+                            {% endif %}
+
+                            <a href="{% url "blogango_author_page" entry.created_by %}">{{ entry.created_by }}</a> </span> 
+                          <span class="meta__date"><span class="glyphicon glyphicon-calendar"></span>  &nbsp; {{ entry.created_on|date:'jS N, Y' }}</span> 
+                        </div>
+                      </div>
+                      <div class="col-xs-12  col-sm-4">
+                        <div class="meta__comments">
+                          <span class="glyphicon glyphicon-comment"></span>  &nbsp;
+                          {% if entry.get_num_reactions %}
+                          <a href="{{ entry.get_absolute_url }}#reactions">{{ entry.get_num_reactions }}</a> 
+                          {% endif %}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Meta without image end -->
+
+            <!-- Start of the blogpost -->
+            <div class="row">
+              <div class="col-xs-10  col-xs-offset-1">
+
+                <!-- Start of the content -->
+                <div class="post-content--front-page">
+                  <h2 class="front-page-title">
+                    <a href="{{ entry.get_absolute_url }}">{{ entry.title }}</a> 
+                  </h2>
+                  {% if post_detail %}
+                    <p>{{ entry.text|safe }}</p>
+                  {% else %}
+                    <p>{{ entry.text|truncatewords_html:100|safe }} </p>
+                  {% endif %}
+                </div>
+
+                {% if not post_detail %}
+                  <a href="{{ entry.get_absolute_url }}">
+                    <div class="read-more">
+                      Continue reading
+                      <div class="read-more__arrow">
+                        <span class="glyphicon  glyphicon-chevron-right"></span> 
+                      </div>
+                    </div>
+                  </a> 
+                {% endif %}
+              </div>
+            </div>
+          </div>

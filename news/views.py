@@ -27,3 +27,6 @@ def home(request):
         template_variables,
         context_instance=RequestContext(request)
     )
+
+def register(request):
+    return HttpResponse("register page")

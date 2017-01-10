@@ -25,9 +25,10 @@ urlpatterns = [
     url(r'^news/', include(news_urls)),
 ]
 
-urlpatterns += patterns('',
+#old way to add urls in the url config, depricated in 1.9 and will be removed in 1.10
+# urlpatterns += patterns('',
    
-)
+# )
 
 
 

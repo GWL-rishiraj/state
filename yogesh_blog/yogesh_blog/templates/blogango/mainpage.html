@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block breadcrumbs %}
+	<a href="#" class="tags__link">Blog</a> 
+{% endblock %}
+
+{% block content%}
+<!--BLOG POST STARTS-->
+{% for entry in entries %}
+    {% include 'includes/blog-list.html' %}
+{% empty %}
+    <div class="leftblock"> 
+        <h1>No posts in blog</h1> 
+        <div class="postcontent">
+            <p>
+              <br/>You don't have any entries in your blog, 
+              Create a blog entry at '/admin/blogango/blogentry/add/'.
+            </p>
+        </div>
+    </div>
+{% endfor %}
+
+<div class="clear"></div>
+{% if page_obj.has_next or page_obj.has_previous %}
+<div class="pagination"> 
+    <div class="moreinfo">
+        {% if page_obj.has_previous %}
+            <span class='right'><a href='{% url "blogango_page" page_obj.previous_page_number %}'>&laquo; Previous Page </a></span>
+        {% endif %}
+
+        {% if page_obj.has_next %}
+            <a href='{% url "blogango_page" page_obj.next_page_number %}'> Next Page &raquo;</a>
+        {% endif %}
+    </div> 
+</div>
+{% endif %}
+
+{% endblock %}

@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    {{block.super}} - Tagged with {{ tag.name }}
+{% endblock %}
+
+{% block breadcrumbs %}
+    <a href="{% url "blogango_index" %}" class="tags__link">Blog</a>
+    <a href="#" class="tags__link">Tag: {{ tag.name }}</a>
+{% endblock %}
+
+{% block content %}
+	{% for entry in entries %}
+	    {% include 'includes/blog-list.html' %}
+	{% empty %}
+	    <div class="leftblock"> 
+	        <h1>No entries with this tag</h1> 
+	        <div class="postcontent">
+	            <p>
+	              <br/>
+	              No entries tagged {{ tag.name }}
+	            </p>
+	        </div>
+	    </div>
+	{% endfor %}
+    <div class="clear"></div>
+{% if page_obj.has_next or page_obj.has_previous %}
+<div class="pagination"> 
+    <div class="moreinfo">
+        {% if page_obj.has_previous %}
+            <span class='right'><a href='{% url "blogango_page" page_obj.previous_page_number %}'>&laquo; Previous Page </a></span>
+        {% endif %}
+
+        {% if page_obj.has_next %}
+            <a href='{% url "blogango_page" page_obj.next_page_number %}'> Next Page &raquo;</a>
+        {% endif %}
+    </div> 
+</div>
+{% endif %}
+{% endblock %}

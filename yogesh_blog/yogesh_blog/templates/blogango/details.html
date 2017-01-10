@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load gravatar %}
+{% load pingback_tags %}
+{% load blogango_filters %}
+
+{% block title %}
+    {{entry.title}} - {{block.super}}
+{% endblock %}
+
+{% block breadcrumbs %}
+    <a href="{% url "blogango_index" %}" class="tags__link" rel="nofollow">Blog</a>
+    <a href="{% url "blogango_archives" entry.created_on.year entry.created_on|date:'b' %}" class="tags__link" rel="nofollow"> {{ entry.created_on|date:'N Y' }}</a></li>
+	<a href="#" class="tags__link" rel="nofollow" >{{ entry.title }}</a>
+{% endblock %}
+
+{% block content %}
+
+{% with 'True' as post_detail %}
+    {% include 'includes/post_details.html' %}
+{% endwith %}
+
+
+<div class="clear"></div>
+{% endblock %}
+
