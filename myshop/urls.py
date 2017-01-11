@@ -17,12 +17,14 @@ Including another URLconf
 from django.conf.urls import patterns,include,url
 from django.contrib import admin
 from news import urls as news_urls, views as newsView
+from items import urls as item_urls, views as itemView
 
 urlpatterns = [
     #url(r'^$', 'news.views.home', name="home"), we can also use this function instead of below one
     url(r'^$', newsView.home, name="home"),
     url(r'^admin/', admin.site.urls),
     url(r'^news/', include(news_urls)),
+    url(r'^items/', include(item_urls)),
 ]
 
 #old way to add urls in the url config, depricated in 1.9 and will be removed in 1.10
