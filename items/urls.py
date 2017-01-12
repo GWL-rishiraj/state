@@ -4,5 +4,6 @@ from . import views
 
 urlpatterns = [
     url(r'^$', views.all_items,name='all items'),
-    url(r'^([0-9]{10})/$', views.item)
+    url(r'^([0-9]{10})/$', views.item),
+    url(r'^vendor/items/' , views.vendorItem.as_view())
 ]

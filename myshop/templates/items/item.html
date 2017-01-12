@@ -1,3 +1,19 @@
-<h1>{{title}}</h1>
+{% extends 'items/base.html' %}
+{% block head %}
+	<div class="page-header">
+	    <h1><a href="/items/">All Items</a> / <a href="#{{item.sku}}">{{item.name}}</a></h1>
+	</div>
+{% endblock %}
+{% block content %}
+    <div class="post">
+        <div class="date">
+            {{item.name}}
+        </div>
+        <h1><a href="{{item.sku}}/">{{item.name}}</a></h1>
+        {% for cat in item.getItemCategories %}
+        	<p>{{cat}}<p>
+        {% endfor %}
 
-	<p><a href="{{item.sku}}/">{{item.name}}</a></p><br>
+        <!-- <p>{{ post.text|linebreaksbr }}</p> -->
+    </div>
+{% endblock %}

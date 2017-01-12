@@ -1,5 +1,13 @@
-<h1>{{title}}</h1>
-
+{% extends 'items/base.html' %}
+{% block content %}
 {% for item in items %}
-	<p><a href="{{item.sku}}/">{{item.name}}</a></p><br>
+    <div class="post">
+        <div class="date">
+            {{item.name}}
+        </div>
+        <h1><a href="{{item.sku}}/">{{item.name}}</a></h1>
+        <!-- <p>{{ post.text|linebreaksbr }}</p> -->
+    </div>
 {% endfor %}
+<!-- <h1>{{title}}</h1> -->
+{% endblock %}
